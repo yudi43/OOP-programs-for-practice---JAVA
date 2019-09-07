@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Author {
     private String name;
     private String email;
@@ -28,26 +30,26 @@ class Author {
 
 class Book {
     private String name;
-    private Author author;
+    private Author[] authors;
     private double price;
     private int qty;
 
-    public Book(String name, Author author, double price) {
+    public Book(String name, Author[] authors, double price) {
         this.name = name;
-        this.author = author;
+        this.authors = authors;
         this.price = price;
     }
-    public Book(String name, Author author, double price, int qty) {
+    public Book(String name, Author[] authors, double price, int qty) {
         this.name = name;
-        this.author = author;
+        this.authors = authors;
         this.price = price;
         this.qty = qty;
     }
     public String getName() {
         return this.name;
     }
-    public Author getAuthor() {
-        return this.author;
+    public String getAuthors() {
+        return Arrays.toString(this.authors);
     }
     public double getPrice() {
         return this.price;
@@ -62,18 +64,25 @@ class Book {
         this.qty = qty;
     }
     public String toString() {
-        return "[name = " + this.name + ", " + author + ", price = " + this.price + ", qty = " + this.qty + "]";
+        return "[name = " + this.name + ", " + Arrays.toString(authors) + ", price = " + this.price + ", qty = " + this.qty + "]";
     }
     public String getAuthorName() {
-        return this.author.getName();
+        return this.authors + this.authors[0].getName();
     }
 }
 
 public class BookTest {
     public static void main(String[] args) {
+        Author[] authors = new Author[2];
         Author yudi = new Author("Yudi", "singh.yudi10@gmail.com", 'm');
-        Book b1 = new Book("Book1", yudi, 12.0);
+        Author pudi = new Author("pudi", "singh.pudi10@gmail.com", 'm');
+        authors[0] = yudi;
+        authors[1] = pudi;
+
+        Book b1 = new Book("Book1", authors, 12.0);
 
         System.out.println(b1.toString());
+        // System.out.println(b1.getAuthors());
+
     }
 }
